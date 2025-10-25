@@ -1,1 +1,77 @@
-/* You can add global styles to this file, and also import other style files */
+/* css vars */
+:root {
+  --secundaryColor: #cfddaa;
+  --mainColor: #6a9a4e;
+  --darkColor: #396542;
+  --darkColor2: #293e2d;
+  --darkColor3: #142a13;
+  --lightColor: #f2e8cd;
+  --diffColor: #bb474a;
+}
+
+/* custom classes */
+.txtSecundaryColor {
+  color: var(--secundaryColor);
+}
+.txtMainColor {
+  color: var(--mainColor);
+}
+.txtDarkColor {
+  color: var(--darkColor);
+}
+.txtDarkColor2 {
+  color: var(--darkColor2);
+}
+.txtDarkColor3 {
+  color: var(--darkColor3);
+}
+.txtLightColor {
+  color: var(--lightColor);
+}
+.txtdiffColor {
+  color: var(--diffColor);
+}
+
+.bgSecundaryColor {
+  background-color: var(--secundaryColor);
+}
+.bgMainColor {
+  background-color: var(--mainColor);
+}
+.bgDarkColor {
+  background-color: var(--darkColor);
+}
+.bgDarkColor2 {
+  background-color: var(--darkColor2);
+}
+.bgDarkColor3 {
+  background-color: var(--darkColor3);
+}
+.bgLightColor {
+  background-color: var(--lightColor);
+}
+.bgdiffColor {
+  background-color: var(--diffColor);
+}
+
+.borderSecundaryColor {
+  border-color: var(--secundaryColor);
+}
+.borderMainColor {
+  border-color: var(--mainColor);
+}
+.borderDarkColor {
+  border-color: var(--darkColor);
+}
+.borderDarkColor2 {
+  border-color: var(--darkColor2);
+}
+.borderDarkColor3 {
+  border-color: var(--darkColor3);
+}
+.borderLightColor {
+  border-color: var(--lightColor);
+}
+.borderdiffColor {
+  border-color: var(--diffColor);
+}
