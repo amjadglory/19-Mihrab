@@ -1,6 +1,6 @@
-<nav class="navbar p-0 navbar-expand-lg bgLightColor position-fixed">
+<nav class="navbar p-0 navbar-expand-lg bgDarkColor3 position-fixed">
   <div class="container">
-    <a class="navbar-brand" routerLink="/">
+    <a class="navbar-brand" routerLink="/timeline">
       <img src="./logo.png" alt="" />
     </a>
     <button
@@ -23,7 +23,7 @@
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li ngbDropdown class="nav-item dropdown">
           <a ngbDropdownToggle class="nav-link dropdown-toggle" role="button" aria-expanded="false">
-            <img width="50px" src="./man-profile.png" alt="" />
+            <img width="40px" src="./man-profile.png" alt="" />
           </a>
           <ul ngbDropdownMenu class="dropdown-menu">
             <li>
@@ -48,11 +48,41 @@
             <li>
               <a
                 ngbDropdownItem
-                class="dropdown-item"
+                class="dropdown-item d-flex"
                 (click)="isMenuCollapsed = true"
                 routerLink="/login"
-                >Logout</a
-              >
+                >Logout
+                <div class="ms-auto">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-person-walking txtDarkColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M9.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0M6.44 3.752A.75.75 0 0 1 7 3.5h1.445c.742 0 1.32.643 1.243 1.38l-.43 4.083a1.8 1.8 0 0 1-.088.395l-.318.906.213.242a.8.8 0 0 1 .114.175l2 4.25a.75.75 0 1 1-1.357.638l-1.956-4.154-1.68-1.921A.75.75 0 0 1 6 8.96l.138-2.613-.435.489-.464 2.786a.75.75 0 1 1-1.48-.246l.5-3a.75.75 0 0 1 .18-.375l2-2.25Z"
+                    />
+                    <path
+                      d="M6.25 11.745v-1.418l1.204 1.375.261.524a.8.8 0 0 1-.12.231l-2.5 3.25a.75.75 0 1 1-1.19-.914zm4.22-4.215-.494-.494.205-1.843.006-.067 1.124 1.124h1.44a.75.75 0 0 1 0 1.5H11a.75.75 0 0 1-.531-.22Z"
+                    />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-door-open txtdiffColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1" />
+                    <path
+                      d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117M11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5M4 1.934V15h6V1.077z"
+                    />
+                  </svg>
+                </div>
+              </a>
             </li>
           </ul>
         </li>

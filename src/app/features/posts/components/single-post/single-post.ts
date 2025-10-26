@@ -6,6 +6,4 @@ import { Component } from '@angular/core';
   templateUrl: './single-post.html',
   styleUrl: './single-post.css',
 })
-export class SinglePost {
-
-}
+export class SinglePost {}
