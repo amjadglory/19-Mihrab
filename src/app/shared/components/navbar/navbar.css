@@ -1,0 +1,16 @@
+.dropdown-toggle::after {
+  display: none;
+}
+.dropdown-menu[data-bs-popper] {
+  left: -120px;
+  background-color: var(--lightColor);
+  border-color: var(--darkColor);
+}
+.navbar {
+  left: 0;
+  top: 0;
+  right: 0;
+}
+.dropdown-item:hover {
+  background-color: var(--secundaryColor);
+}

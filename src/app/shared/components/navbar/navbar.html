@@ -1,6 +1,8 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/">Navbar</a>
+<nav class="navbar p-0 navbar-expand-lg bgLightColor position-fixed">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">
+      <img src="./logo.png" alt="" />
+    </a>
     <button
       (click)="isMenuCollapsed = !isMenuCollapsed"
       class="navbar-toggler"
@@ -18,24 +20,40 @@
       class="collapse navbar-collapse"
       id="navbarSupportedContent"
     >
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li ngbDropdown class="nav-item dropdown">
-          <a
-            ngbDropdownToggle
-            (click)="isMenuCollapsed = true"
-            class="nav-link dropdown-toggle"
-            routerLink=""
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Dropdown
+          <a ngbDropdownToggle class="nav-link dropdown-toggle" role="button" aria-expanded="false">
+            <img width="50px" src="./man-profile.png" alt="" />
           </a>
           <ul ngbDropdownMenu class="dropdown-menu">
-            <li><a ngbDropdownItem class="dropdown-item" routerLink="/">Action</a></li>
-            <li><a ngbDropdownItem class="dropdown-item" routerLink="/">Another action</a></li>
+            <li>
+              <a
+                ngbDropdownItem
+                class="dropdown-item"
+                (click)="isMenuCollapsed = true"
+                routerLink="/profile"
+                >Profile</a
+              >
+            </li>
+            <li>
+              <a
+                ngbDropdownItem
+                class="dropdown-item"
+                (click)="isMenuCollapsed = true"
+                routerLink="/resetpass"
+                >Reset Password</a
+              >
+            </li>
             <li><hr class="dropdown-divider" /></li>
-            <li><a ngbDropdownItem class="dropdown-item" routerLink="/">Something else here</a></li>
+            <li>
+              <a
+                ngbDropdownItem
+                class="dropdown-item"
+                (click)="isMenuCollapsed = true"
+                routerLink="/login"
+                >Logout</a
+              >
+            </li>
           </ul>
         </li>
       </ul>
