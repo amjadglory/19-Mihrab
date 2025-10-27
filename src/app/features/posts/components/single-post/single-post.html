@@ -1,13 +1,13 @@
-<div>
+<div class="m-3 mb-5">
   <!-- post header -->
   <div class="post-header d-flex justify-content-between align-items-center">
     <div class="d-flex justify-content-center gap-2 align-items-center">
       <div>
-        <img width="40px" src="./man-profile.png" alt="" />
+        <img width="40px" [src]="post?.user?.photo" alt="" />
       </div>
       <div>
-        <h5 class="m-0">Amjad Salah Aldeen</h5>
-        <span>3 Hours</span>
+        <h5 class="m-0">{{ post?.user?.name }}</h5>
+        <span>{{ post?.createdAt | date : 'short' }}</span>
       </div>
     </div>
     <div>
@@ -27,13 +27,9 @@
   </div>
   <!-- post body -->
   <div class="post-body mt-2">
-    <p>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore assumenda ipsum mollitia
-      officiis quia consectetur delectus magnam nisi cum doloribus molestias suscipit eum voluptates
-      a illo, nemo tenetur laborum unde.
-    </p>
+    <p>{{ post?.body }}</p>
     <div class="w-100 rounded-1">
-      <img class="w-100 rounded-1" src="./960px-لا_اله_الا_الله_محمد_رسول_الله.jpg" alt="" />
+      <img class="w-100 rounded-1" [src]="post?.image" alt="" />
     </div>
   </div>
 
