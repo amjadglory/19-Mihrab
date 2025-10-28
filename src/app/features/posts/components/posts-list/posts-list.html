@@ -1,4 +1,7 @@
-@if (isLoading()) {
-<app-post-place-holder-component></app-post-place-holder-component>
-} @else { @for (post of posts(); track post._id) {
-<app-single-post [post]="post"></app-single-post>} }
+<section class="posts-content bgLightColor card rounded-1 shadow-sm p-3">
+  @if (isLoading()) {
+  <app-post-place-holder-component></app-post-place-holder-component>
+
+  } @else { @for (post of posts(); track post._id) {
+  <app-single-post [post]="post"></app-single-post>} }
+</section>
