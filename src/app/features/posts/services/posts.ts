@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class Posts {
   constructor(private httpClient: HttpClient) {}
   createPost(body: FormData): Observable<any> {
-    return this.httpClient.post(environment.baseUrl + 'posts', body);
+    return this.httpClient.post(environment.baseUrl + `posts`, body);
   }
   getAllPosts(): Observable<any> {
     return this.httpClient.get(environment.baseUrl + `posts`);

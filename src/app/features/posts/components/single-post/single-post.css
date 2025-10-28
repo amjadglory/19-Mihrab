@@ -1,0 +1,8 @@
+.showCommentsBtn {
+  cursor: pointer;
+}
+.scrolled {
+  height: 280px;
+  width: 100%;
+  overflow: scroll;
+}

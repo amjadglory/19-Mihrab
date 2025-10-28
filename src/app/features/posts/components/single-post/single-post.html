@@ -3,11 +3,11 @@
   <div class="post-header d-flex justify-content-between align-items-center">
     <div class="d-flex justify-content-center gap-2 align-items-center">
       <div>
-        <img width="40px" [src]="post?.user?.photo" alt="" />
+        <img width="40px" [src]="post.user.photo" alt="" />
       </div>
       <div>
-        <h5 class="m-0">{{ post?.user?.name }}</h5>
-        <span>{{ post?.createdAt | date : 'short' }}</span>
+        <h5 class="m-0">{{ post.user.name }}</h5>
+        <span>{{ post.createdAt | date : 'short' }}</span>
       </div>
     </div>
     <div>
@@ -27,47 +27,52 @@
   </div>
   <!-- post body -->
   <div class="post-body mt-2">
-    <p>{{ post?.body }}</p>
+    <p>{{ post.body }}</p>
     <div class="w-100 rounded-1">
-      <img class="w-100 rounded-1" [src]="post?.image" alt="" />
+      <img class="w-100 rounded-1" [src]="post.image" alt="" />
     </div>
   </div>
 
   <!-- post comments -->
   <div class="post-comments">
-    <a class="mt-1 txtDarkColor">Show Comments</a>
-    <div class="card border-0 rounded-2 mt-3 bgSecundaryColor p-4">
-      <div class="post-header d-flex justify-content-between align-items-center">
-        <div class="d-flex justify-content-center gap-2 align-items-center mb-1">
-          <div>
-            <img width="30px" src="./man-profile.png" alt="" />
+    <a (click)="toggleComments()" class="mt-1 txtDarkColor showCommentsBtn">
+      {{ showMoreComments() ? 'Hide Comments' : 'Show All Comments' }}
+    </a>
+    <div [class.scrolled]="showMoreComments()">
+      @for (comment of displayComments(); track $index) {
+      <div class="card border-0 rounded-2 mt-3 bgSecundaryColor p-4">
+        <div class="post-header d-flex justify-content-between align-items-center">
+          <div class="d-flex justify-content-center gap-2 align-items-center mb-1">
+            <div>
+              <img width="30px" src="./man-profile.png" alt="" />
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <h6 class="m-0 p-0">{{ comment.commentCreator.name }}</h6>
+              <span>{{ comment.createdAt | date }}</span>
+            </div>
           </div>
-          <div class="d-flex align-items-center gap-2">
-            <h6 class="m-0 p-0">Amjad Salah Aldeen</h6>
-            <span>3 Hours</span>
+          <div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-three-dots txtDarkColor3"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"
+              />
+            </svg>
           </div>
         </div>
         <div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            class="bi bi-three-dots txtDarkColor3"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"
-            />
-          </svg>
+          <p class="mb-0">
+            {{ comment.content }}
+          </p>
         </div>
       </div>
-      <div>
-        <p class="mb-0">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, nulla enim id quas
-          doloribus illum.
-        </p>
-      </div>
+      }
     </div>
     <div
       class="d-flex flex-row align-items-center gap-1 card border-0 rounded-2 mt-1 bgSecundaryColor p-2"
