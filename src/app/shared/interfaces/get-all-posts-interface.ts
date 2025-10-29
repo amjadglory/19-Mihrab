@@ -1,4 +1,18 @@
-export interface PostInterface {
+export interface GetAllPostsInterface {
+  message: string;
+  paginationInfo: PaginationInfo;
+  posts: Post[];
+}
+
+export interface PaginationInfo {
+  currentPage: number;
+  numberOfPages: number;
+  limit: number;
+  nextPage: number;
+  total: number;
+}
+
+export interface Post {
   _id: string;
   body?: string;
   image?: string;

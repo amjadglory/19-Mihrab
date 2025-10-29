@@ -12,6 +12,11 @@
   right: 0;
   z-index: 999;
 }
-.dropdown-item:hover {
+.dropdown-item:hover,
+.dropdown-item:hover .navSVG {
   background-color: var(--secundaryColor);
+}
+
+.navSVG {
+  width: fit-content;
 }

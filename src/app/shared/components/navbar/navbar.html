@@ -27,55 +27,52 @@
           </a>
           <ul ngbDropdownMenu class="dropdown-menu">
             <li>
-              <div class="d-flex gap-0 align-items-center">
-                <a
-                  ngbDropdownItem
-                  class="dropdown-item"
-                  (click)="isMenuCollapsed = true"
-                  routerLink="/profile"
-                  >Profile</a
-                >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  class="bi bi-person-circle me-4 txtDarkColor"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                  <path
-                    fill-rule="evenodd"
-                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
-                  />
-                </svg>
-              </div>
+              <a
+                ngbDropdownItem
+                class="dropdown-item d-flex"
+                (click)="isMenuCollapsed = true"
+                routerLink="/login"
+                >Profile
+                <div class="ms-auto navSVG">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-person-circle txtDarkColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                    <path
+                      fill-rule="evenodd"
+                      d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+                    />
+                  </svg>
+                </div>
+              </a>
             </li>
             <li>
-              <div class="d-flex gap-0 align-items-center">
-                <a
-                  ngbDropdownItem
-                  class="dropdown-item"
-                  (click)="isMenuCollapsed = true"
-                  routerLink="/resetpass"
-                  >Reset Password</a
-                >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  class="bi bi-bootstrap-reboot me-4 txtDarkColor"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="M1.161 8a6.84 6.84 0 1 0 6.842-6.84.58.58 0 1 1 0-1.16 8 8 0 1 1-6.556 3.412l-.663-.577a.58.58 0 0 1 .227-.997l2.52-.69a.58.58 0 0 1 .728.633l-.332 2.592a.58.58 0 0 1-.956.364l-.643-.56A6.8 6.8 0 0 0 1.16 8z"
-                  />
-                  <path
-                    d="M6.641 11.671V8.843h1.57l1.498 2.828h1.314L9.377 8.665c.897-.3 1.427-1.106 1.427-2.1 0-1.37-.943-2.246-2.456-2.246H5.5v7.352zm0-3.75V5.277h1.57c.881 0 1.416.499 1.416 1.32 0 .84-.504 1.324-1.386 1.324z"
-                  />
-                </svg>
-              </div>
+              <a
+                ngbDropdownItem
+                class="dropdown-item d-flex"
+                (click)="isMenuCollapsed = true"
+                routerLink="/login"
+                >Setting
+                <div class="ms-auto navSVG">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-gear-fill txtDarkColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"
+                    />
+                  </svg>
+                </div>
+              </a>
             </li>
             <li><hr class="dropdown-divider" /></li>
             <li>
@@ -85,7 +82,7 @@
                 (click)="isMenuCollapsed = true"
                 routerLink="/login"
                 >Logout
-                <div class="ms-auto">
+                <div class="ms-auto navSVG">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"

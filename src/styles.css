@@ -76,6 +76,10 @@
   border-color: var(--diffColor);
 }
 
+.curPointer {
+  cursor: pointer;
+}
+
 .form-custom {
   display: block;
   width: 100%;

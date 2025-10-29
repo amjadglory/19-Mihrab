@@ -1,4 +1,50 @@
-<section class="posts-content bgLightColor card rounded-1 shadow-sm p-3">
+<section class="posts-content bgLightColor card rounded-2 shadow-sm p-3 mb-3">
+  <div class="d-flex justify-content-center gap-2 align-items-center p-2">
+    <a>
+      <img class="rounded-5 curPointer" width="40px" [src]="userData()?.photo" alt="" />
+    </a>
+    <input
+      class="form-custom rounded-pill p-3 w-100 curPointer"
+      type="text"
+      placeholder="What's In Your Mind..حتعمل ايه يا مجنون"
+    />
+  </div>
+  <div class="d-flex justify-content-around">
+    <strong class="d-flex gap-2 p-2 align-items-center curPointer">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-image txtDarkColor"
+        viewBox="0 0 16 16"
+      >
+        <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
+        <path
+          d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1z"
+        />
+      </svg>
+      Photo</strong
+    >
+    <strong class="d-flex gap-2 p-2 align-items-center curPointer">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-text-left txtdiffColor"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M2 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"
+        />
+      </svg>
+      Write article</strong
+    >
+  </div>
+</section>
+<section class="posts-content bgLightColor card rounded-2 shadow-sm p-3">
   @if (isLoading()) {
   <app-post-place-holder-component></app-post-place-holder-component>
 
