@@ -1,16 +1,26 @@
 <section class="posts-content bgLightColor card rounded-2 shadow-sm p-3 mb-3">
   <div class="d-flex justify-content-center gap-2 align-items-center p-2">
+    @if (isLoading()) {
+    <a
+      style="width: 40px; height: 40px"
+      class="btn btn-dark disabled placeholder-glow col-6 rounded-5"
+      aria-disabled="true"
+    ></a>
+    }@else {
     <a>
       <img class="rounded-5 curPointer" width="40px" [src]="userData()?.photo" alt="" />
     </a>
+    }
     <input
+      (click)="openModal()"
       class="form-custom rounded-pill p-3 w-100 curPointer"
       type="text"
       placeholder="What's In Your Mind..حتعمل ايه يا مجنون"
+      readonly
     />
   </div>
   <div class="d-flex justify-content-around">
-    <strong class="d-flex gap-2 p-2 align-items-center curPointer">
+    <strong (click)="openModal()" class="d-flex gap-2 p-2 align-items-center curPointer">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -26,7 +36,7 @@
       </svg>
       Photo</strong
     >
-    <strong class="d-flex gap-2 p-2 align-items-center curPointer">
+    <strong (click)="openModal()" class="d-flex gap-2 p-2 align-items-center curPointer">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
