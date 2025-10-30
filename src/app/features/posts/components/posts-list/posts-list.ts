@@ -19,7 +19,7 @@ export class PostsList implements OnInit {
   private readonly postsService = inject(Posts);
   private readonly usersService = inject(UsersService);
   private readonly platFormId = inject(PLATFORM_ID);
-  private modalService = inject(NgbModal);
+  private readonly modalService = inject(NgbModal);
 
   posts: WritableSignal<PostInterface[]> = signal([]);
   userData: WritableSignal<UserDataInterface | undefined> = signal(undefined);
@@ -56,9 +56,21 @@ export class PostsList implements OnInit {
     });
   }
   openModal() {
-    this.modalService.open(PostModal, {
-      centered: true,
-      animation: true,
-    });
+    this.modalService
+      .open(PostModal, {
+        centered: true,
+        animation: true,
+        size: 'lg',
+        backdrop: true,
+        backdropClass: 'bgSecundaryColor',
+      })
+      .result.then(
+        (resulte) => {
+          console.log(resulte);
+        },
+        (reason) => {
+          console.log(reason);
+        }
+      );
   }
 }
