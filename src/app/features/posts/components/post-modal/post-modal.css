@@ -1,0 +1,5 @@
+.curDisabled {
+  cursor: not-allowed;
+  background-color: lightgray;
+  color: var(--diffColor);
+}

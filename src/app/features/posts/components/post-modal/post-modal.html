@@ -10,12 +10,56 @@
     </div>
   </div>
 </div>
-<div class="modal-body bgLightColor">
+<form class="modal-body bgLightColor d-flex flex-column gap-1" (submit)="sharePostData($event)">
   <textarea
+    [formControl]="postBody()"
     rows="4"
     placeholder="Share something that brings people closer to Allah ♥..."
     class="form-custom px-3 py-2 w-100"
   ></textarea>
+  @if (postBodyLength() > 3000) {
+  <div class="d-flex align-items-center gap-2">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-exclamation-circle txtdiffColor"
+      viewBox="0 0 16 16"
+    >
+      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+      <path
+        d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"
+      />
+    </svg>
+    <p class="txtdiffColor m-0">Posts should be less than 3000\{{ postBodyLength() }} letters</p>
+  </div>
+
+  } @if (postImgUrl()) {
+  <div
+    class="card w-100 m-auto d-flex justify-content-center align-items-center dragDrop border-2 p-1 position-relative"
+  >
+    <label
+      class="w-100 m-auto d-flex justify-content-center align-items-center position-absolute h-100"
+      for="img"
+    >
+    </label>
+    <svg
+      (click)="deletePostImg(fileInput)"
+      xmlns="http://www.w3.org/2000/svg"
+      width="28"
+      height="28"
+      fill="currentColor"
+      class="bi bi-x-square-fill txtdiffColor position-absolute top-0 end-0 m-4 curPointer z-3"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708"
+      />
+    </svg>
+    <img class="w-100 mx-auto rounded-2" [src]="postImgUrl()" alt="" />
+  </div>
+  }@else {
   <label
     class="card w-75 m-auto d-flex justify-content-center align-items-center dragDrop border-2 my-2 p-3 py-5"
     for="img"
@@ -39,9 +83,47 @@
     <strong>Click to upload<small> or drag and drop</small></strong>
     <span>SVG,PNG,JBG,or GIF (MAX 800x400 px)</span>
   </label>
-  <input class="d-none" type="file" name="img" id="img" />
-</div>
-<div class="modal-footer bgLightColor">
-  <button type="submit" class="customBtn" (click)="closeModal()">Post</button>
-  <button type="button" class="cancelBtn" (click)="closeModal()">Cancel</button>
-</div>
+  }
+
+  <input
+    #fileInput
+    [formControl]="fileInputControl()"
+    class="d-none"
+    (change)="getPostImg($event)"
+    type="file"
+    name="img"
+    id="img"
+  />
+  <div class="modal-footer bgLightColor pb-0 pt-3 px-0 d-flex justify-content-center">
+    <button
+      type="submit"
+      [disabled]="postBody().value === '' && !postImg()"
+      [class]="{
+        'curDisabled': postBody().value === '' && !postImg(),
+        'bg-body-tertiary': postBody().value === '' && !postImg(),
+      }"
+      class="customBtn px-4 curDisabled"
+    >
+      Post
+    </button>
+    <button type="button" class="cancelBtn" (click)="closeModal()">Cancel</button>
+  </div>
+  @if (errMsg() !== '') {
+  <div class="d-flex align-items-center gap-2 mx-auto">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-exclamation-circle txtdiffColor"
+      viewBox="0 0 16 16"
+    >
+      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+      <path
+        d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"
+      />
+    </svg>
+    <p class="txtdiffColor m-0">{{ errMsg() }}</p>
+  </div>
+  }
+</form>
