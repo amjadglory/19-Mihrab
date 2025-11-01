@@ -173,12 +173,16 @@
   color: var(--darkColor3);
 }
 
-.dragDrop {
+.dragIn {
+  border-style: dotted;
+  border-color: var(--darkColor);
+  background-color: var(--lightColor);
+  transition: all 0.5s;
+}
+
+.dragOut {
   border-style: dotted;
   border-color: var(--darkColor);
   background-color: var(--secundaryColor);
   transition: all 0.5s;
-}
-.dragDrop:hover {
-  background-color: var(--lightColor);
 }

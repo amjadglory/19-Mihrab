@@ -16,10 +16,12 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { Posts } from '../../services/posts';
 import { DomSanitizer } from '@angular/platform-browser';
+import { DragDropImg } from '../../../../shared/directives/drag-drop-img';
+import { ImgHandler } from '../../../../shared/interfaces/img-handler';
 
 @Component({
   selector: 'app-post-modal',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, DragDropImg],
   templateUrl: './post-modal.html',
   styleUrl: './post-modal.css',
 })
@@ -28,7 +30,6 @@ export class PostModal implements OnInit {
   private readonly postsService = inject(Posts);
   private readonly platFormId = inject(PLATFORM_ID);
   private readonly ngbActiveModal = inject(NgbActiveModal);
-  private readonly domSanitizer = inject(DomSanitizer);
 
   userData: WritableSignal<UserDataInterface | undefined> = signal(undefined);
   isLoading: WritableSignal<boolean> = signal(false);
@@ -59,6 +60,8 @@ export class PostModal implements OnInit {
     this.fileInputControl().reset();
   }
   getPostImg(e: Event) {
+    e.preventDefault();
+    e.stopPropagation();
     let fileInput = e.target as HTMLInputElement;
     if (fileInput.files && fileInput.files.length > 0) {
       const imgFile = fileInput.files[0];
@@ -74,6 +77,10 @@ export class PostModal implements OnInit {
       // };
       // this.postImgUrl.set(imgHandle);
     }
+  }
+  droppedImg(imgFile: ImgHandler) {
+    this.postImg.set(imgFile.file);
+    this.postImgUrl.set(imgFile.url);
   }
   getUserInfo() {
     this.isLoading.set(true);

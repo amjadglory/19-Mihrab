@@ -37,7 +37,7 @@
 
   } @if (postImgUrl()) {
   <div
-    class="card w-100 m-auto d-flex justify-content-center align-items-center dragDrop border-2 p-1 position-relative"
+    class="card w-100 m-auto d-flex justify-content-center align-items-center bgSecundaryColor border-2 p-1 position-relative"
   >
     <label
       class="w-100 m-auto d-flex justify-content-center align-items-center position-absolute h-100"
@@ -61,7 +61,9 @@
   </div>
   }@else {
   <label
-    class="card w-75 m-auto d-flex justify-content-center align-items-center dragDrop border-2 my-2 p-3 py-5"
+    appDragDropImg
+    (postImgFile)="droppedImg($event)"
+    class="card w-75 m-auto d-flex justify-content-center align-items-center bgSecundaryColor border-2 my-2 p-3 py-5"
     for="img"
   >
     <svg
@@ -90,6 +92,7 @@
     [formControl]="fileInputControl()"
     class="d-none"
     (change)="getPostImg($event)"
+    (drop)="getPostImg($event)"
     type="file"
     name="img"
     id="img"
