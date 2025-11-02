@@ -119,6 +119,7 @@ export class PostModal implements OnInit {
       }
       this.postsService.createPost(formData).subscribe({
         next: (res) => {
+          console.log(res);
           if (res.message === 'success') {
             this.closeModal('success');
           }
