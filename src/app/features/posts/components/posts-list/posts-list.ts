@@ -70,6 +70,9 @@ export class PostsList implements OnInit {
         },
         (reason) => {
           console.log(reason);
+          if (reason === 'success') {
+            this.getAllPosts();
+          }
         }
       );
   }

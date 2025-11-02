@@ -94,20 +94,19 @@ export class PostModal implements OnInit {
       },
     });
   }
-  closeModal() {
-    // this.ngbActiveModal.close();
-    this.ngbActiveModal.dismiss('exit');
+  closeModal(msg: string) {
+    this.ngbActiveModal.dismiss(msg);
   }
-  getAllPosts() {
-    this.postsService.getAllPosts().subscribe({
-      next: (res) => {
-        console.log(res);
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-  }
+  // getAllPosts() {
+  //   this.postsService.getAllPosts().subscribe({
+  //     next: (res) => {
+  //       console.log(res);
+  //     },
+  //     error: (err) => {
+  //       console.log(err);
+  //     },
+  //   });
+  // }
   sharePostData(e: Event) {
     e.preventDefault();
     if (this.postBody().valid) {
@@ -120,10 +119,8 @@ export class PostModal implements OnInit {
       }
       this.postsService.createPost(formData).subscribe({
         next: (res) => {
-          console.log(res);
           if (res.message === 'success') {
-            this.closeModal();
-            this.getAllPosts();
+            this.closeModal('success');
           }
         },
         error: (err) => {
