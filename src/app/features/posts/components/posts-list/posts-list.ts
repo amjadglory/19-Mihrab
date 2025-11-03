@@ -31,11 +31,24 @@ export class PostsList implements OnInit {
       this.getUserInfo();
     }
   }
+  getCurrnetPosts(currentPage: number) {
+    this.postsService.getCurrentPosts(currentPage).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.posts.set(res.posts.reverse());
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
   getAllPosts() {
     this.isLoading.set(true);
     this.postsService.getAllPosts().subscribe({
       next: (res) => {
-        this.posts.set(res.posts);
+        console.log(res);
+        let currntPage: number = res.paginationInfo.numberOfPages;
+        this.getCurrnetPosts(currntPage);
         this.isLoading.set(false);
       },
       error: (err) => {

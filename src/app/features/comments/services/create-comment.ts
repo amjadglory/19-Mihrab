@@ -3,14 +3,21 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CommentInterface } from '../../../shared/interfaces/comment-interface';
 import { environment } from '../../../../environments/environment.development';
+import { CommentResInterceptor } from '../../../shared/interfaces/comment-res-interceptor';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CreateComment {
+export class CommentService {
   private readonly httpClient = inject(HttpClient);
 
-  createComment(commentBody: CommentInterface): Observable<any> {
-    return this.httpClient.post(environment.baseUrl + `comments`, commentBody);
+  createComment(commentBody: CommentInterface): Observable<CommentResInterceptor> {
+    return this.httpClient.post<CommentResInterceptor>(
+      environment.baseUrl + `comments`,
+      commentBody
+    );
+  }
+  updateComment(updatedComment: string): Observable<any> {
+    return this.httpClient.put(environment.baseUrl + `comments`, updatedComment);
   }
 }

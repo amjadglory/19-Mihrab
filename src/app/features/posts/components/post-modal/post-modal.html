@@ -35,7 +35,7 @@
     <p class="txtdiffColor m-0">Posts should be less than 3000\{{ postBodyLength() }} letters</p>
   </div>
 
-  } @if (postBodyLength() < 4 && postBody().touched) {
+  } @if (postBodyLength() < 4 && postBody().dirty && postBody().touched) {
   <div class="d-flex align-items-center gap-2">
     <svg
       xmlns="http://www.w3.org/2000/svg"

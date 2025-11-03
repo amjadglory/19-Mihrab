@@ -190,3 +190,24 @@
 .border-dotted {
   border-style: dotted;
 }
+
+/* deop down styles */
+.dropdown-toggle::after {
+  display: none;
+}
+.dropdown-menu[data-bs-popper],
+.dropdown-menu {
+  left: -100px;
+  background-color: var(--lightColor);
+  border-color: var(--darkColor);
+}
+.navbar {
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 999;
+}
+.dropdown-item:hover,
+.dropdown-item:hover .navSVG {
+  background-color: var(--secundaryColor);
+}

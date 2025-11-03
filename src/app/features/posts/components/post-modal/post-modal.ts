@@ -18,6 +18,7 @@ import { Posts } from '../../services/posts';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DragDropImg } from '../../../../shared/directives/drag-drop-img';
 import { ImgHandler } from '../../../../shared/interfaces/img-handler';
+import { PostInterface } from '../../models/post';
 
 @Component({
   selector: 'app-post-modal',
@@ -30,6 +31,8 @@ export class PostModal implements OnInit {
   private readonly postsService = inject(Posts);
   private readonly platFormId = inject(PLATFORM_ID);
   private readonly ngbActiveModal = inject(NgbActiveModal);
+
+  posts: WritableSignal<PostInterface[]> = signal([]);
 
   userData: WritableSignal<UserDataInterface | undefined> = signal(undefined);
   isLoading: WritableSignal<boolean> = signal(false);
@@ -97,16 +100,32 @@ export class PostModal implements OnInit {
   closeModal(msg: string) {
     this.ngbActiveModal.dismiss(msg);
   }
-  // getAllPosts() {
-  //   this.postsService.getAllPosts().subscribe({
-  //     next: (res) => {
-  //       console.log(res);
-  //     },
-  //     error: (err) => {
-  //       console.log(err);
-  //     },
-  //   });
-  // }
+  getCurrnetPosts(currentPage: number) {
+    this.postsService.getCurrentPosts(currentPage).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.posts.set(res.posts.reverse());
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+  getAllPosts() {
+    this.isLoading.set(true);
+    this.postsService.getAllPosts().subscribe({
+      next: (res) => {
+        console.log(res);
+        let currntPage: number = res.paginationInfo.numberOfPages;
+        this.getCurrnetPosts(currntPage);
+        this.isLoading.set(false);
+      },
+      error: (err) => {
+        console.log(err);
+        this.isLoading.set(false);
+      },
+    });
+  }
   sharePostData(e: Event) {
     e.preventDefault();
     if (this.postBody().valid) {
@@ -121,6 +140,7 @@ export class PostModal implements OnInit {
         next: (res) => {
           console.log(res);
           if (res.message === 'success') {
+            // this.getAllPosts();
             this.closeModal('success');
           }
         },

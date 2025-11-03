@@ -16,4 +16,9 @@ export class Posts {
   getAllPosts(): Observable<GetAllPostsInterface> {
     return this.httpClient.get<GetAllPostsInterface>(environment.baseUrl + `posts`);
   }
+  getCurrentPosts(currentPage: number): Observable<GetAllPostsInterface> {
+    return this.httpClient.get<GetAllPostsInterface>(
+      environment.baseUrl + `posts?page=${currentPage}`
+    );
+  }
 }
