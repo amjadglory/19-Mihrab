@@ -66,7 +66,7 @@ export class SinglePost implements OnInit {
       this.commentService.createComment(commentBody).subscribe({
         next: (res) => {
           console.log(res);
-          this.commentControl().setValue('');
+          this.commentControl().reset();
           if (res.comments) {
             this.comments.set(res.comments);
           }
