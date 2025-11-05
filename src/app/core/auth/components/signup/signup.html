@@ -81,15 +81,12 @@
         id="repass"
         class="form-custom px-3 py-2 w-100 mb-1"
       />
-      @let rePassControl = signupForm().get('rePassword'); @if (rePassControl?.errors &&
+      @let rePassControl = signupForm().get('rePassword'); @if (signupForm().getError('mismatch') &&
       rePassControl?.touched) {
       <ul class="rounded-1 py-2 bgdiffColor">
-        @if (rePassControl?.getError('required')) {
-        <li class="rounded-1 txtLightColor text-start">rePassword is required</li>
-        }@else if (rePassControl?.getError('pattern')) {
         <li class="rounded-1 txtLightColor text-start">Passwords do not match</li>
-        }
       </ul>
+
       }
       <label for="birthDate" class="me-auto">Birth Date</label>
       <input
