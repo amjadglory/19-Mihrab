@@ -1,1 +1,59 @@
-<p>signup works!</p>
+<section
+  class="pt-3 pb-3 d-flex flex-column justify-content-center align-items-center bgSecundaryColor"
+>
+  <h1 class="txtDarkColor3">
+    Wellcome to
+    <span class="text-center txtDarkColor">Mihrab</span>
+  </h1>
+  <p class="txtDarkColor">Where Muslims connect in accordance with Islamic values. 💚</p>
+  <form class="mx-auto mb-1 card bgLightColor w-50 text-center p-5 py-3 txtDarkColor2">
+    <h2 class="">Sign up</h2>
+    <div class="d-flex flex-column justify-content-start">
+      <label for="name" class="me-auto">Name</label>
+      <input
+        type="text"
+        placeholder="Your Name..."
+        id="name"
+        class="form-custom px-3 py-2 w-100 mb-1"
+      />
+      <label for="email" class="me-auto">Email</label>
+      <input
+        type="email"
+        placeholder="Your Email..."
+        id="email"
+        class="form-custom px-3 py-2 w-100 mb-1"
+      />
+      <label type="password" for="pass" class="me-auto">Password</label>
+      <input placeholder="Your Password..." id="pass" class="form-custom px-3 py-2 w-100 mb-1" />
+      <label for="rePass" class="me-auto">Re-Password</label>
+      <input
+        type="password"
+        placeholder="re-Password..."
+        id="repass"
+        class="form-custom px-3 py-2 w-100 mb-1"
+      />
+      <label for="birthDate" class="me-auto">Birth Date</label>
+      <input
+        type="date"
+        placeholder="Birth Date..."
+        id="birthDate"
+        class="form-custom px-3 py-2 w-100 mb-1"
+      />
+      <fieldset class="d-flex flex-column align-items-start">
+        <legend class="fs-6 m-0 fitContent">Gender</legend>
+        <div class="d-flex gap-3">
+          <div class="d-flex gap-1">
+            <input type="radio" name="gender" id="male" value="male" checked />
+            <label for="male">Male</label>
+          </div>
+          <div class="d-flex gap-1">
+            <input type="radio" name="gender" id="female" value="female" />
+            <label for="female">Female</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <button class="customBtn py-2 px-4 w-25 align-self-center">Login</button>
+    </div>
+  </form>
+</section>
