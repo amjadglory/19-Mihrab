@@ -6,51 +6,143 @@
     <span class="text-center txtDarkColor">Mihrab</span>
   </h1>
   <p class="txtDarkColor">Where Muslims connect in accordance with Islamic values. 💚</p>
-  <form class="mx-auto mb-1 card bgLightColor w-50 text-center p-5 py-3 txtDarkColor2">
+  <form
+    [formGroup]="signupForm()"
+    class="mx-auto mb-1 card bgLightColor w-50 text-center p-5 py-3 txtDarkColor2"
+    (ngSubmit)="submitSignupForm()"
+  >
     <h2 class="">Sign up</h2>
     <div class="d-flex flex-column justify-content-start">
       <label for="name" class="me-auto">Name</label>
       <input
+        formControlName="name"
         type="text"
         placeholder="Your Name..."
         id="name"
         class="form-custom px-3 py-2 w-100 mb-1"
       />
+      @let nameControl = signupForm().get('name'); @if (nameControl?.errors && nameControl?.touched)
+      {
+      <ul class="rounded-1 py-2 bgdiffColor">
+        @if (nameControl?.getError('required')) {
+        <li class="rounded-1 txtLightColor text-start">Name is required</li>
+        }@else if (nameControl?.getError('minlength')) {
+        <li class="rounded-1 txtLightColor text-start">Name must be at least 3 characters long</li>
+        }@else if (nameControl?.getError('maxlength')) {
+        <li class="rounded-1 txtLightColor text-start">Name must not exceed 20 characters</li>
+        }
+      </ul>
+      }
       <label for="email" class="me-auto">Email</label>
       <input
+        formControlName="email"
         type="email"
         placeholder="Your Email..."
         id="email"
         class="form-custom px-3 py-2 w-100 mb-1"
       />
-      <label type="password" for="pass" class="me-auto">Password</label>
-      <input placeholder="Your Password..." id="pass" class="form-custom px-3 py-2 w-100 mb-1" />
+      @let emailControl = signupForm().get('email'); @if (emailControl?.errors &&
+      emailControl?.touched) {
+      <ul class="rounded-1 py-2 bgdiffColor">
+        @if (emailControl?.getError('required')) {
+        <li class="rounded-1 txtLightColor text-start">Email is required</li>
+        }@else if (emailControl?.getError('email')) {
+        <li class="rounded-1 txtLightColor text-start">
+          Please enter a valid email address (e.g., example@domain.com)
+        </li>
+        }
+      </ul>
+      }
+      <label for="pass" class="me-auto">Password</label>
+      <input
+        formControlName="password"
+        type="password"
+        placeholder="Your Password..."
+        id="pass"
+        class="form-custom px-3 py-2 w-100 mb-1"
+      />
+      @let passControl = signupForm().get('password'); @if (passControl?.errors &&
+      passControl?.touched) {
+      <ul class="rounded-1 py-2 bgdiffColor">
+        @if (passControl?.getError('required')) {
+        <li class="rounded-1 txtLightColor text-start">Password is required</li>
+        }@else if (passControl?.getError('pattern')) {
+        <li class="rounded-1 txtLightColor text-start">
+          Password must be at least 6 characters and contain only letters, numbers, and underscores
+        </li>
+        }
+      </ul>
+      }
       <label for="rePass" class="me-auto">Re-Password</label>
       <input
+        formControlName="rePassword"
         type="password"
         placeholder="re-Password..."
         id="repass"
         class="form-custom px-3 py-2 w-100 mb-1"
       />
+      @let rePassControl = signupForm().get('rePassword'); @if (rePassControl?.errors &&
+      rePassControl?.touched) {
+      <ul class="rounded-1 py-2 bgdiffColor">
+        @if (rePassControl?.getError('required')) {
+        <li class="rounded-1 txtLightColor text-start">rePassword is required</li>
+        }@else if (rePassControl?.getError('pattern')) {
+        <li class="rounded-1 txtLightColor text-start">Passwords do not match</li>
+        }
+      </ul>
+      }
       <label for="birthDate" class="me-auto">Birth Date</label>
       <input
+        formControlName="dateOfBirth"
         type="date"
         placeholder="Birth Date..."
         id="birthDate"
         class="form-custom px-3 py-2 w-100 mb-1"
       />
+      @let dateOfBirthControl = signupForm().get('dateOfBirthControl'); @if
+      (dateOfBirthControl?.errors && dateOfBirthControl?.touched) {
+      <ul class="rounded-1 py-2 bgdiffColor">
+        @if (dateOfBirthControl?.getError('required')) {
+        <li class="rounded-1 txtLightColor text-start">Date of birth is required</li>
+        }@else if (dateOfBirthControl?.getError('pattern')) {
+        <li class="rounded-1 txtLightColor text-start">
+          Date must be in format: DD-MM-YYYY (e.g., 21-10-1996)
+        </li>
+        }
+      </ul>
+      }
+
       <fieldset class="d-flex flex-column align-items-start">
         <legend class="fs-6 m-0 fitContent">Gender</legend>
         <div class="d-flex gap-3">
           <div class="d-flex gap-1">
-            <input type="radio" name="gender" id="male" value="male" checked />
+            <input
+              formControlName="gender"
+              type="radio"
+              name="gender"
+              id="male"
+              value="male"
+              checked
+            />
             <label for="male">Male</label>
           </div>
           <div class="d-flex gap-1">
-            <input type="radio" name="gender" id="female" value="female" />
+            <input formControlName="gender" type="radio" name="gender" id="female" value="female" />
             <label for="female">Female</label>
           </div>
         </div>
+        @let genderControl = signupForm().get('gender'); @if (genderControl?.errors &&
+        genderControl?.touched) {
+        <ul class="rounded-1 py-2 bgdiffColor">
+          @if (genderControl?.getError('required')) {
+          <li class="rounded-1 txtLightColor text-start">Date of birth is required</li>
+          }@else if (genderControl?.getError('pattern')) {
+          <li class="rounded-1 txtLightColor text-start">
+            Gender must be either "male" or "female"
+          </li>
+          }
+        </ul>
+        }
       </fieldset>
 
       <button class="customBtn py-2 px-4 w-25 align-self-center">Login</button>

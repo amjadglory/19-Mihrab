@@ -6,13 +6,50 @@
     <span class="text-center txtDarkColor">Mihrab</span>
   </h1>
   <p class="txtDarkColor">Where Muslims connect in accordance with Islamic values. 💚</p>
-  <form class="mx-auto card bgLightColor w-50 text-center p-5 py-3 txtDarkColor2">
+  <form
+    [formGroup]="loginForm()"
+    class="mx-auto card bgLightColor w-50 text-center p-5 py-3 txtDarkColor2"
+  >
     <h2 class="">login</h2>
     <div class="d-flex flex-column justify-content-start">
       <label for="email" class="me-auto">Email</label>
-      <input placeholder="Your Email..." id="email" class="form-custom px-3 py-2 w-100 mb-3" />
+      <input
+        formControlName="email"
+        placeholder="Your Email..."
+        id="email"
+        class="form-custom px-3 py-2 w-100 mb-3"
+      />
+      @let emailControl = loginForm().get('email'); @if (emailControl?.errors &&
+      emailControl?.touched) {
+      <ul class="rounded-1 py-2 bgdiffColor">
+        @if (emailControl?.getError('required')) {
+        <li class="rounded-1 txtLightColor text-start">Email is required</li>
+        }@else if (emailControl?.getError('email')) {
+        <li class="rounded-1 txtLightColor text-start">
+          Please enter a valid email address (e.g., example@domain.com)
+        </li>
+        }
+      </ul>
+      }
       <label for="pass" class="me-auto">Password</label>
-      <input placeholder="Your Password..." id="pass" class="form-custom px-3 py-2 w-100 mb-3" />
+      <input
+        formControlName="password"
+        placeholder="Your Password..."
+        id="pass"
+        class="form-custom px-3 py-2 w-100 mb-3"
+      />
+      @let passControl = loginForm().get('password'); @if (passControl?.errors &&
+      passControl?.touched) {
+      <ul class="rounded-1 py-2 bgdiffColor">
+        @if (passControl?.getError('required')) {
+        <li class="rounded-1 txtLightColor text-start">Password is required</li>
+        }@else if (passControl?.getError('pattern')) {
+        <li class="rounded-1 txtLightColor text-start">
+          Password must be at least 6 characters and contain only letters, numbers, and underscores
+        </li>
+        }
+      </ul>
+      }
       <button class="customBtn py-2 px-4 w-25 align-self-center">Login</button>
     </div>
   </form>
