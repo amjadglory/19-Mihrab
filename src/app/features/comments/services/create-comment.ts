@@ -17,7 +17,12 @@ export class CommentService {
       commentBody
     );
   }
-  updateComment(updatedComment: string): Observable<any> {
-    return this.httpClient.put(environment.baseUrl + `comments`, updatedComment);
+  updateComment(updatedComment: string, commentId: string): Observable<any> {
+    return this.httpClient.put(environment.baseUrl + `comments/${commentId}`, {
+      content: updatedComment,
+    });
   }
+  // getCommentsAfterUpdate(postId: string): Observable<any> {
+  //   return this.httpClient.get(environment.baseUrl + `posts/${postId}/comments`);
+  // }
 }

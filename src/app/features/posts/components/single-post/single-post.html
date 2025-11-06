@@ -68,7 +68,14 @@
               </svg>
             </button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-              <button (click)="toEdit()" ngbDropdownItem>Edit</button>
+              <button
+                (click)="toEdit()"
+                (click)="commentId.set(comment._id)"
+                (click)="getOldCommentValue(comment.content)"
+                ngbDropdownItem
+              >
+                Edit
+              </button>
               <button ngbDropdownItem>Delete</button>
             </div>
           </div>
@@ -83,7 +90,6 @@
       }
     </div>
     <form
-      (submit)="shareComment($event)"
       class="d-flex flex-row align-items-center gap-1 card border-0 rounded-2 mt-1 bgSecundaryColor p-2"
     >
       <textarea
@@ -93,7 +99,7 @@
         class="form-custom px-3 py-2 w-100"
       ></textarea>
       @if (isShare()) {
-      <button class="btn p-1">
+      <button type="button" class="btn p-1" (click)="shareComment($event)">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="34"
@@ -109,9 +115,9 @@
       </button>
       }@else {
       <button
+        type="button"
         class="btn p-1"
-        (click)="toShare()"
-        (click)="updateComment(commentControl().value, 'comment._id')"
+        (click)="updateComment($event, commentControl().value, commentId())"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

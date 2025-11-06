@@ -27,7 +27,7 @@ export class SinglePost implements OnInit {
     new FormControl(null, [Validators.minLength(4), Validators.maxLength(300)])
   );
   comments = signal<Comment[]>([]);
-
+  commentId: WritableSignal<string> = signal('');
   ngOnInit(): void {
     this.comments.set(this.post.comments.reverse());
     this.getUserId();
@@ -77,14 +77,40 @@ export class SinglePost implements OnInit {
       });
     }
   }
-  updateComment(updatedComment: string, commentId: string) {
-    this.commentService.updateComment(updatedComment).subscribe({
+  updateComment(e: Event, updatedComment: string, commentId: string) {
+    e.preventDefault();
+    this.commentService.updateComment(updatedComment, commentId).subscribe({
       next: (res) => {
         console.log(res);
+        const updatedComments = this.comments().map((comment) => {
+          if (comment._id === commentId) {
+            return {
+              ...comment,
+              content: updatedComment,
+            };
+          }
+          return comment;
+        });
+        this.comments.set(updatedComments);
+        this.toShare();
+        this.commentControl().reset();
       },
       error: (err) => {
         console.log(err);
       },
     });
   }
+  getOldCommentValue(oldValue: string | undefined) {
+    this.commentControl().setValue(oldValue);
+  }
+  // getCommentsAfterUpdate(postId: string) {
+  //   this.commentService.getCommentsAfterUpdate(postId).subscribe({
+  //     next: (res) => {
+  //       console.log(res);
+  //     },
+  //     error: (err) => {
+  //       console.log(err);
+  //     },
+  //   });
+  // }
 }
