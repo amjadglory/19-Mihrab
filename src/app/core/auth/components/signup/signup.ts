@@ -1,4 +1,6 @@
-import { Component, signal, WritableSignal } from '@angular/core';
+import { join } from 'node:path';
+import { reverse } from 'dns';
+import { Component, inject, signal, WritableSignal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -6,7 +8,10 @@ import {
   ReactiveFormsModule,
   AbstractControl,
   ValidationErrors,
+  FormBuilder,
 } from '@angular/forms';
+import { AuthService } from '../../services/auth-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -15,29 +20,58 @@ import {
   styleUrl: './signup.css',
 })
 export class Signup {
+  private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
+  private readonly fb = inject(FormBuilder);
+  signupErrMsg: WritableSignal<string> = signal('');
+  signupSuccMsg: WritableSignal<string> = signal('');
+  isLoading: WritableSignal<boolean> = signal(false);
   signupForm: WritableSignal<FormGroup> = signal(
-    new FormGroup(
+    this.fb.group(
       {
-        name: new FormControl(null, [
-          Validators.required,
-          Validators.maxLength(20),
-          Validators.minLength(3),
-        ]),
-        email: new FormControl(null, [Validators.required, Validators.email]),
-        password: new FormControl(null, [Validators.required, Validators.pattern(/^\w{6,}$/)]),
-        rePassword: new FormControl(null, [Validators.required]),
-        dateOfBirth: new FormControl(null, [
-          Validators.required,
-          Validators.pattern(/^(\d{4})-(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01])$/),
-        ]),
-        gender: new FormControl(null, [Validators.required, Validators.pattern(/^(male|female)$/)]),
+        name: [null, [Validators.required, Validators.maxLength(20), Validators.minLength(3)]],
+        email: [null, [Validators.required, Validators.email]],
+        password: [
+          null,
+          [
+            Validators.required,
+            Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/),
+          ],
+        ],
+        rePassword: [null, [Validators.required]],
+        dateOfBirth: [
+          null,
+          [
+            Validators.required,
+            Validators.pattern(/^(\d{4})-(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01])$/),
+          ],
+        ],
+        gender: [null, [Validators.required, Validators.pattern(/^(male|female)$/)]],
       },
       { validators: this.rePassConfirm }
     )
   );
   submitSignupForm() {
     if (this.signupForm().valid) {
-      console.log(this.signupForm());
+      this.isLoading.set(true);
+      this.authService.sendSignupForm(this.signupForm().value).subscribe({
+        next: (res) => {
+          console.log(res);
+          this.signupSuccMsg.set(res.message);
+          setTimeout(() => {
+            this.router.navigate(['/login']);
+          }, 800);
+          this.signupErrMsg.set('');
+          this.isLoading.set(false);
+        },
+        error: (err) => {
+          console.log(err.error);
+          this.signupErrMsg.set(err.error.error);
+          this.signupSuccMsg.set('');
+
+          this.isLoading.set(false);
+        },
+      });
     }
   }
   rePassConfirm(group: AbstractControl): ValidationErrors | null {

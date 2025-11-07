@@ -10,4 +10,7 @@ import { RouterLink } from '@angular/router';
 })
 export class Navbar {
   isMenuCollapsed = true;
+  removeToken() {
+    localStorage.setItem('token', '');
+  }
 }
