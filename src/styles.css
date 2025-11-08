@@ -247,3 +247,14 @@
     transform: rotateY(0deg);
   }
 }
+
+.eye {
+  top: 50%;
+  transform: translateY(-60%);
+  inset-inline-end: 16px;
+}
+.eyelog {
+  top: 50%;
+  transform: translateY(-90%);
+  inset-inline-end: 16px;
+}

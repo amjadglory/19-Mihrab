@@ -1,4 +1,4 @@
-import { Component, inject, signal, WritableSignal } from '@angular/core';
+import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -8,15 +8,15 @@ import {
   FormBuilder,
 } from '@angular/forms';
 import { AuthService } from '../../services/auth-service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [ɵInternalFormsSharedModule, ReactiveFormsModule],
+  imports: [ɵInternalFormsSharedModule, ReactiveFormsModule, RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
-export class Login {
+export class Login implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
@@ -24,19 +24,27 @@ export class Login {
   isLoading: WritableSignal<boolean> = signal(false);
   loginErrMsg: WritableSignal<string> = signal('');
   loginsucMsg: WritableSignal<string> = signal('');
+  eyeOpen: WritableSignal<boolean> = signal(false);
+  loginForm: WritableSignal<FormGroup> = signal(this.fb.group({}));
 
-  loginForm: WritableSignal<FormGroup> = signal(
-    this.fb.group({
-      email: [null, [Validators.required, Validators.email]],
-      password: [
-        null,
-        [
-          Validators.required,
-          Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/),
+  ngOnInit(): void {
+    this.initLoginForm();
+  }
+
+  initLoginForm() {
+    this.loginForm.set(
+      this.fb.group({
+        email: [null, [Validators.required, Validators.email]],
+        password: [
+          null,
+          [
+            Validators.required,
+            Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/),
+          ],
         ],
-      ],
-    })
-  );
+      })
+    );
+  }
 
   submitLoginForm() {
     if (this.loginForm().valid) {
@@ -59,6 +67,8 @@ export class Login {
           this.loginErrMsg.set(err.error.error);
         },
       });
+    } else {
+      this.loginForm().markAllAsTouched();
     }
   }
 }
