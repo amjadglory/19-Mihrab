@@ -76,7 +76,13 @@
               >
                 Edit
               </button>
-              <button ngbDropdownItem>Delete</button>
+              <button
+                (click)="commentId.set(comment._id)"
+                (click)="deleteComment(commentId())"
+                ngbDropdownItem
+              >
+                Delete
+              </button>
             </div>
           </div>
           }

@@ -1,3 +1,4 @@
+import { Comment } from './../../../../shared/interfaces/get-all-posts-interface';
 import { UsersService } from './../../../users/services/users-service';
 import { reverse } from 'dns';
 import { Component, computed, inject, Input, OnInit, signal, WritableSignal } from '@angular/core';
@@ -5,7 +6,6 @@ import { PostInterface } from '../../models/post';
 import { DatePipe } from '@angular/common';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommentService } from '../../../comments/services/create-comment';
-import { Comment } from '../../../../shared/interfaces/get-all-posts-interface';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
@@ -113,4 +113,18 @@ export class SinglePost implements OnInit {
   //     },
   //   });
   // }
+  deleteComment(commentId: string) {
+    this.commentService.deleteComment(commentId).subscribe({
+      next: (res) => {
+        console.log(res);
+        const nonDeletedComents: Comment[] = this.comments().filter(
+          (comment: Comment) => comment._id !== commentId
+        );
+        this.comments.set(nonDeletedComents);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
 }
