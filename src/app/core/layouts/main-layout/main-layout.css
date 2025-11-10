@@ -1,3 +1,8 @@
 .pt {
   padding-top: 150px;
 }
+@media (max-width: 600px) {
+  .pt {
+    padding-top: 80px;
+  }
+}

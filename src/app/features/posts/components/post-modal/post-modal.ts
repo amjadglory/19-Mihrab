@@ -19,6 +19,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { DragDropImg } from '../../../../shared/directives/drag-drop-img';
 import { ImgHandler } from '../../../../shared/interfaces/img-handler';
 import { PostInterface } from '../../models/post';
+import { UpdatePostService } from '../../services/update-post-service';
 
 @Component({
   selector: 'app-post-modal',
@@ -31,6 +32,7 @@ export class PostModal implements OnInit {
   private readonly postsService = inject(Posts);
   private readonly platFormId = inject(PLATFORM_ID);
   private readonly ngbActiveModal = inject(NgbActiveModal);
+  private readonly updatePostService = inject(UpdatePostService);
 
   posts: WritableSignal<PostInterface[]> = signal([]);
 
@@ -47,6 +49,8 @@ export class PostModal implements OnInit {
   postImg: WritableSignal<File | null> = signal(null);
   postImgUrl: WritableSignal<string | ArrayBuffer | null> = signal(null);
   errMsg: WritableSignal<string> = signal('');
+
+  postBeforUpdate: WritableSignal<FormData> = signal(this.updatePostService.getPostData());
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platFormId)) {
@@ -151,4 +155,11 @@ export class PostModal implements OnInit {
       });
     }
   }
+  // updatePostData() {
+  //   this.postBody().setValue(this.postBeforUpdate().get('body'));
+  //   const imgValue = this.postBeforUpdate().get('image');
+  //   if (imgValue instanceof File) {
+  //     this.postImgUrl.set(URL.createObjectURL(imgValue));
+  //   }
+  // }
 }

@@ -1,4 +1,14 @@
 .posts-content {
   max-width: 700px;
   margin: auto;
+  padding: 16px;
+}
+@media (max-width: 600px) {
+  .posts-content {
+    padding: 0;
+    margin: 10px;
+  }
+  hr {
+    padding: 10px;
+  }
 }

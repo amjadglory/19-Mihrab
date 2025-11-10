@@ -1,5 +1,5 @@
-<section class="posts-content bgLightColor card rounded-2 shadow-sm p-3 mb-3">
-  <div class="d-flex justify-content-center gap-2 align-items-center p-2">
+<section class="posts-content bgLightColor card rounded-2 shadow-sm mb-3">
+  <div class="d-flex justify-content-center gap-2 align-items-center p-3">
     @if (isLoading()) {
     <a
       style="width: 40px; height: 40px"
@@ -8,19 +8,22 @@
     ></a>
     }@else {
     <a>
-      <img class="rounded-5 curPointer" width="40px" [src]="userData()?.photo" alt="" />
+      <img class="rounded-5 curPointe userImg" [src]="userData()?.photo" alt="" />
     </a>
     }
     <input
       (click)="openModal()"
-      class="form-custom rounded-pill p-3 w-100 curPointer"
+      class="form-custom rounded-pill w-100 curPointer"
       type="text"
       placeholder="Share something that brings people closer to Allah ♥..."
       readonly
     />
   </div>
   <div class="d-flex justify-content-around">
-    <strong (click)="openModal()" class="d-flex gap-2 p-2 align-items-center curPointer">
+    <strong
+      (click)="openModal()"
+      class="d-flex gap-2 p-2 align-items-center curPointer strong3alaNafso"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -36,7 +39,10 @@
       </svg>
       Photo</strong
     >
-    <strong (click)="openModal()" class="d-flex gap-2 p-2 align-items-center curPointer">
+    <strong
+      (click)="openModal()"
+      class="d-flex gap-2 p-2 align-items-center curPointer strong3alaNafso"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -61,3 +67,10 @@
   } @else { @for (post of posts(); track post._id) {
   <app-single-post [post]="post"></app-single-post>} }
 </section>
+<!-- <section class="posts-content bgLightColor card rounded-2 shadow-sm">
+  @if (isLoading()) {
+  <app-post-place-holder-component></app-post-place-holder-component>
+
+  } @else { @for (post of posts(); track post._id) {
+  <app-single-post [post]="post" [updatePost]="updatePost.bind(this)"></app-single-post>} }
+</section> -->

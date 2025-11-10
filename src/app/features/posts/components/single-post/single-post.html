@@ -3,27 +3,37 @@
   <div class="post-header d-flex justify-content-between align-items-center">
     <div class="d-flex justify-content-center gap-2 align-items-center">
       <div>
-        <img class="rounded-5" width="40px" [src]="post.user.photo" alt="" />
+        <img class="rounded-5 userImg" [src]="post.user.photo" alt="" />
       </div>
       <div>
         <h5 class="m-0">{{ post.user.name }}</h5>
         <span>{{ post.createdAt | date : 'short' }}</span>
       </div>
     </div>
-    <div>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        fill="currentColor"
-        class="bi bi-three-dots txtDarkColor3"
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"
-        />
-      </svg>
+    @if(post.user._id === userId()){
+    <div ngbDropdown placement="bottom-end">
+      <button id="dropdownBasic1" ngbDropdownToggle class="bg-transparent border-0">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-three-dots txtDarkColor3"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"
+          />
+        </svg>
+      </button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <!-- (click)="updatePostSon(post.body || '', post.image || '', post._id)" -->
+        <button ngbDropdownItem>Edit</button>
+
+        <button ngbDropdownItem>Delete</button>
+      </div>
     </div>
+    }
   </div>
   <!-- post body -->
   <div class="post-body mt-2">
@@ -40,7 +50,7 @@
     </a>
     <div [class.scrolled]="comments().length > 2 && showMoreComments()">
       @for (comment of displayComments(); track $index) {
-      <div class="card border-0 rounded-2 mt-3 bgSecundaryColor p-4">
+      <div class="card border-0 rounded-2 mt-3 bgSecundaryColor commentCard">
         <div class="post-header d-flex justify-content-between align-items-center">
           <div class="d-flex justify-content-center gap-2 align-items-center mb-1">
             <div>
@@ -76,6 +86,8 @@
               >
                 Edit
               </button>
+              @if(post.user._id === userId()){
+
               <button
                 (click)="commentId.set(comment._id)"
                 (click)="deleteComment(commentId())"
@@ -83,6 +95,7 @@
               >
                 Delete
               </button>
+              }
             </div>
           </div>
           }
@@ -96,13 +109,13 @@
       }
     </div>
     <form
-      class="d-flex flex-row align-items-center gap-1 card border-0 rounded-2 mt-1 bgSecundaryColor p-2"
+      class="d-flex flex-row align-items-center gap-1 card border-0 rounded-2 mt-1 bgSecundaryColor"
     >
       <textarea
         [formControl]="commentControl()"
         rows="1"
         placeholder="Your Comment..."
-        class="form-custom px-3 py-2 w-100"
+        class="form-custom w-100"
       ></textarea>
       @if (isShare()) {
       <button type="button" class="btn p-1" (click)="shareComment($event)">

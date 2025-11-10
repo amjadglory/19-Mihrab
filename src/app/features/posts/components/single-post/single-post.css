@@ -17,3 +17,9 @@
   border-bottom: 0;
   border-left: 0.3em solid transparent;
 }
+
+@media (max-width: 600px) {
+  hr {
+    margin-inline: 10px;
+  }
+}

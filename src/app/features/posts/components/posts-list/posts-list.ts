@@ -8,6 +8,7 @@ import { UsersService } from '../../../users/services/users-service';
 import { UserDataInterface } from '../../../users/interfaces/user-data-interface';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PostModal } from '../post-modal/post-modal';
+import { UpdatePostService } from '../../services/update-post-service';
 
 @Component({
   selector: 'app-posts-list',
@@ -20,6 +21,7 @@ export class PostsList implements OnInit {
   private readonly usersService = inject(UsersService);
   private readonly platFormId = inject(PLATFORM_ID);
   private readonly modalService = inject(NgbModal);
+  private readonly updatePostService = inject(UpdatePostService);
 
   posts: WritableSignal<PostInterface[]> = signal([]);
   userData: WritableSignal<UserDataInterface | undefined> = signal(undefined);
@@ -89,4 +91,10 @@ export class PostsList implements OnInit {
         }
       );
   }
+  // updatePost(postBody: string, postImg: string, postId: string) {
+  //   console.log(postBody, postImg, postId);
+  //   this.openModal();
+  //   this.updatePostService.setPostData(postBody, postImg, postId);
+  //   // this.postsService.updatePost(postBody, postId);
+  // }
 }

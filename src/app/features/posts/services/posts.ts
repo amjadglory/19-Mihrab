@@ -21,4 +21,7 @@ export class Posts {
       environment.baseUrl + `posts?page=${currentPage}`
     );
   }
+  // updatePost(postBody: Object, postId: string): Observable<any> {
+  //   return this.httpClient.put(environment.baseUrl + `posts/${postId}`, postBody);
+  // }
 }

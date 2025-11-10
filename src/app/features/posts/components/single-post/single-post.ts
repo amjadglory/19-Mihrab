@@ -21,6 +21,12 @@ export class SinglePost implements OnInit {
   private readonly usersService = inject(UsersService);
 
   @Input() post!: PostInterface;
+  // @Input() updatePost!: (postBody: string, postImg: string, postId: string) => void;
+
+  // updatePostSon(postBody: string, postImg: string, postId: string) {
+  //   this.updatePost(postBody, postImg, postId);
+  // }
+
   showMoreComments: WritableSignal<boolean> = signal(false);
   isShare: WritableSignal<boolean> = signal(true);
   commentControl: WritableSignal<FormControl> = signal(
@@ -28,11 +34,12 @@ export class SinglePost implements OnInit {
   );
   comments = signal<Comment[]>([]);
   commentId: WritableSignal<string> = signal('');
+  userId: WritableSignal<string> = signal('');
+
   ngOnInit(): void {
     this.comments.set(this.post.comments.reverse());
     this.getUserId();
   }
-  userId: WritableSignal<string> = signal('');
   getUserId() {
     this.usersService.getLoggedUserData().subscribe({
       next: (res) => {
