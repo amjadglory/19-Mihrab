@@ -1,10 +1,9 @@
 import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { UsersService } from '../../../users/services/users-service';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './user-profile.html',
   styleUrl: './user-profile.css',
 })
@@ -25,7 +24,6 @@ export class UserProfile implements OnInit {
     if (imgInput.files && imgInput.files.length > 0) {
       console.log(imgInput.files[0]);
       this.imgFile.set(imgInput.files[0]);
-      this.getUserPhoto();
     }
 
     const formData = new FormData();
@@ -35,6 +33,7 @@ export class UserProfile implements OnInit {
       this.usersService.setUserPhoto(formData).subscribe({
         next: (res) => {
           console.log(res);
+          this.getUserPhoto();
         },
         error: (err) => {
           console.log(err);
