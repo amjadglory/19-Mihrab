@@ -12,6 +12,8 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../services/auth-service';
 import { Router, RouterLink } from '@angular/router';
+import { FileHandle } from 'node:fs/promises';
+import { UsersService } from '../../../../features/users/services/users-service';
 
 @Component({
   selector: 'app-signup',
@@ -21,6 +23,7 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class Signup implements OnInit {
   private readonly authService = inject(AuthService);
+  private readonly usersService = inject(UsersService);
   private readonly router = inject(Router);
   private readonly fb = inject(FormBuilder);
   signupErrMsg: WritableSignal<string> = signal('');
@@ -29,6 +32,8 @@ export class Signup implements OnInit {
   eyeOpen: WritableSignal<boolean> = signal(false);
   eyeOpenRe: WritableSignal<boolean> = signal(false);
   signupForm: WritableSignal<FormGroup> = signal(this.fb.group({}));
+  // imgFile: WritableSignal<File | string> = signal('');
+  // imgUrl: WritableSignal<string> = signal('');
 
   ngOnInit(): void {
     this.initSignupForm();
@@ -81,6 +86,18 @@ export class Signup implements OnInit {
           this.isLoading.set(false);
         },
       });
+      // const formData = new FormData();
+      // if (this.imgFile()) {
+      //   formData.append('photo', this.imgFile());
+      //   this.usersService.setUserPhoto(formData).subscribe({
+      //     next: (res) => {
+      //       console.log(res);
+      //     },
+      //     error: (err) => {
+      //       console.log(err);
+      //     },
+      //   });
+      // }
     } else {
       this.signupForm().setErrors({ mismatch: true });
       this.signupForm().markAllAsTouched();
@@ -91,4 +108,12 @@ export class Signup implements OnInit {
       ? null
       : { mismatch: true };
   }
+
+  // addProfileImg(e: Event) {
+  //   let imgInput = e.target as HTMLInputElement;
+  //   if (imgInput.files && imgInput.files.length > 0) {
+  //     console.log(imgInput.files[0]);
+  //     this.imgFile.set(imgInput.files[0]);
+  // }
+  // }
 }

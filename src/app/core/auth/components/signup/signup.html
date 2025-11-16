@@ -13,6 +13,8 @@
   >
     <h2 class="">Sign up</h2>
     <div class="d-flex flex-column justify-content-start">
+      @let genderControl = signupForm().get('gender');
+
       <label for="name" class="me-auto">Name</label>
       <input
         formControlName="name"
@@ -209,8 +211,7 @@
             <label for="female">Female</label>
           </div>
         </div>
-        @let genderControl = signupForm().get('gender'); @if (genderControl?.errors &&
-        genderControl?.touched) {
+        @if (genderControl?.errors && genderControl?.touched) {
         <ul class="rounded-1 py-2 bgdiffColor w-100">
           @if (genderControl?.getError('required')) {
           <li class="rounded-1 txtLightColor text-start">Gender is required</li>

@@ -282,6 +282,10 @@ form {
 .border-dotted {
   border-style: dotted;
 }
+.square120 {
+  height: 120px;
+  width: 120px;
+}
 
 /* deop down styles */
 .dropdown-toggle::after {

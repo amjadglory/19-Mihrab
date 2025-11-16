@@ -14,4 +14,7 @@ export class UsersService {
       environment.baseUrl + 'users/profile-data'
     );
   }
+  setUserPhoto(imgFormData: object): Observable<any> {
+    return this.httpClient.put(environment.baseUrl + `users/upload-photo`, imgFormData);
+  }
 }

@@ -1,0 +1,33 @@
+<!-- @let genderControl = signupForm().get('gender'); -->
+
+<label
+  class="m-auto d-flex justify-content-center position-relative square120 align-items-center border-2 border-dotted rounded-circle"
+  for="img"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    fill="currentColor"
+    class="bi bi-plus z-3 position-absolute top-0 end-0 bgSecundaryColor rounded-circle txtMainColor"
+    viewBox="0 0 16 16"
+  >
+    <path
+      d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"
+    />
+  </svg>
+  @if (!isMale()) {
+  <img
+    class="w-100 h-100 rounded-circle"
+    [src]="imgUrl() ? imgUrl() : './woman-profile.png'"
+    alt=""
+  />
+  }@else {
+  <img
+    class="w-100 h-100 rounded-circle"
+    [src]="imgUrl() ? imgUrl() : './man-profile.png'"
+    alt=""
+  />
+  }
+</label>
+<input (change)="addProfileImg($event)" class="d-none" type="file" name="img" id="img" />

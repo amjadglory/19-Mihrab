@@ -3,7 +3,31 @@
   <div class="post-header d-flex justify-content-between align-items-center">
     <div class="d-flex justify-content-center gap-2 align-items-center">
       <div>
-        <img class="rounded-5 userImg" [src]="post.user.photo" alt="" />
+        @if (!isMale()) {
+        <img
+          width="40px"
+          class="rounded-circle"
+          [src]="
+            post.user.photo &&
+            post.user.photo !== 'https://linked-posts.routemisr.com/uploads/default-profile.png'
+              ? post.user.photo
+              : './woman-profile.png'
+          "
+          alt=""
+        />
+        }@else {
+        <img
+          width="40px"
+          class="rounded-circle"
+          [src]="
+            post.user.photo &&
+            post.user.photo !== 'https://linked-posts.routemisr.com/uploads/default-profile.png'
+              ? post.user.photo
+              : './man-profile.png'
+          "
+          alt=""
+        />
+        }
       </div>
       <div>
         <h5 class="m-0">{{ post.user.name }}</h5>

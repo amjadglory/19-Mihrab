@@ -35,6 +35,8 @@ export class SinglePost implements OnInit {
   comments = signal<Comment[]>([]);
   commentId: WritableSignal<string> = signal('');
   userId: WritableSignal<string> = signal('');
+  imgUrl: WritableSignal<string> = signal('');
+  isMale: WritableSignal<boolean> = signal(true);
 
   ngOnInit(): void {
     this.comments.set(this.post.comments.reverse());
@@ -47,6 +49,7 @@ export class SinglePost implements OnInit {
       },
     });
   }
+
   toggleComments() {
     this.showMoreComments.update((v) => !v);
   }
